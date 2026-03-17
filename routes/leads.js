@@ -6,12 +6,26 @@ const Lead = require('../models/Lead');
 const { auth, checkModulePermission, requireSuperadmin } = require('../middleware/auth');
 const puppeteer = require('puppeteer');
 const juice = require('juice');
+const fs = require('fs');
+const path = require('path');
 const { buildTourSummaryHtml } = require('../lib/tourSummaryHtml');
 const { buildTourSummaryPdf } = require('../lib/tourSummaryPdf');
 const { buildTourQuotationDocxHtml } = require('../lib/tourQuotationDocxHtml');
 const { buildTourQuotationDocx } = require('../lib/tourQuotationDocx');
 
 const router = express.Router();
+
+// Shared logger for PDF generation
+const logFile = path.join(__dirname, '../pdf-debug.log');
+const logLine = (msg) => {
+    try {
+        const entry = `[${new Date().toISOString()}] ${msg}\n`;
+        fs.appendFileSync(logFile, entry);
+        console.log(msg);
+    } catch (e) {
+        console.error('Logging failed:', e.message);
+    }
+};
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 10 * 1024 * 1024 } });
 
 const VALID_STATUSES = ['new', 'contacted', 'qualified', 'booked', 'lost'];
@@ -561,9 +575,11 @@ router.get('/:id/tour-summary-pdf', auth, checkModulePermission(), async (req, r
     if (req.user.role === 'staff' && assignedId !== req.user.id) {
       return res.status(403).json({ message: 'Access denied' });
     }
+    logLine(`Streaming Summary PDF for lead: ${lead._id}`);
     await buildTourSummaryPdf(lead, res);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    logLine(`Tour Summary PDF Error: ${err.message}\nStack: ${err.stack}`);
+    res.status(500).json({ message: 'Failed to generate summary PDF', error: err.message });
   }
 });
 
@@ -633,12 +649,14 @@ router.get('/:id/tour-summary-word', auth, checkModulePermission(), async (req, 
       pageNumber: true,
     });
 
+    logLine(`Streaming Summary Word for lead: ${lead._id}`);
     res.setHeader('Content-Disposition', `attachment; filename="tour-summary-${leadId}.docx"`);
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
     res.send(docxBuffer);
+    logLine('Summary Word file sent successfully');
   } catch (err) {
-    console.error('Word Export Error:', err);
-    res.status(500).json({ message: 'Server error' });
+    logLine(`Tour Summary Word Error: ${err.message}\nStack: ${err.stack}`);
+    res.status(500).json({ message: 'Failed to generate Word summary', error: err.message });
   }
 });
 
@@ -665,92 +683,131 @@ router.post('/convert-to-pdf', auth, async (req, res) => {
           frontendUrl = 'http://localhost:3000';
       }
     }
-    
     const targetUrl = `${frontendUrl}/admin/tour-pdf?leadId=${leadId}&export=1`;
-    console.log(`PDF Generation: Targeting Frontend at ${frontendUrl}`);
 
-    const browserOptions = {
-      headless: 'new',
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu', '--single-process']
+    // Find Chrome: check env var, then common system paths as fallback
+    const findChrome = () => {
+      if (process.env.CHROME_PATH) return process.env.CHROME_PATH;
+      const possiblePaths = [
+        // macOS
+        '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+        '/Applications/Chromium.app/Contents/MacOS/Chromium',
+        '/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary',
+        // Linux
+        '/usr/bin/google-chrome',
+        '/usr/bin/google-chrome-stable',
+        '/usr/bin/chromium-browser',
+        '/usr/bin/chromium',
+        // Windows (WSL)
+        '/mnt/c/Program Files/Google/Chrome/Application/chrome.exe',
+      ];
+      for (const p of possiblePaths) {
+        try {
+          if (fs.existsSync(p)) {
+            logLine(`Found system Chrome at: ${p}`);
+            return p;
+          }
+        } catch (e) {}
+      }
+      logLine('No system Chrome found, using Puppeteer bundled Chrome...');
+      return undefined; // Let puppeteer use its own bundled chrome
     };
 
-    // Render-specific Fix: Ensure Chrome is found if installed via build step
-    if (process.env.PUPPETEER_CACHE_DIR) {
-      console.log(`Using custom Puppeteer cache: ${process.env.PUPPETEER_CACHE_DIR}`);
-    }
+    const executablePath = findChrome();
+    const browserOptions = {
+      headless: true,
+      executablePath,
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu', '--disable-web-security']
+    };
 
-    const browser = await puppeteer.launch(browserOptions);
+    logLine(`PDF Generation Started for lead: ${leadId}`);
+    logLine(`Chrome path: ${executablePath || 'Puppeteer bundled'}`);
 
+    let browser;
     try {
+      logLine('Launching browser...');
+      browser = await puppeteer.launch(browserOptions);
+      logLine('Browser launched successfully.');
+
       const page = await browser.newPage();
       
-      // Capture browser console logs for debugging
-      page.on('console', msg => console.log('BROWSER LOG:', msg.text()));
-      page.on('pageerror', err => console.log('BROWSER PAGE ERROR:', err.message));
-      page.on('requestfailed', request => console.log('BROWSER REQ FAILED:', request.url(), request.failure()?.errorText));
+      page.on('console', msg => logLine('BROWSER LOG: ' + msg.text()));
+      page.on('pageerror', err => logLine('BROWSER PAGE ERROR: ' + err.message));
+      page.on('requestfailed', request => logLine('BROWSER REQ FAILED: ' + request.url() + ' ' + (request.failure()?.errorText || '')));
 
-      // Feature 1: Exact A4 Viewport
       await page.setViewport({ width: 794, height: 1123, deviceScaleFactor: 2 });
       
-      // Set the auth token
       if (token) {
         await page.setExtraHTTPHeaders({ 'Authorization': token });
       }
 
-      // Domain-bound logic for token: Go to login page first to set localStorage
-      console.log('Navigating to auth page to set token...');
-      await page.goto(`${frontendUrl}/auth/login`, { waitUntil: 'domcontentloaded' });
-      if (token) {
-        const rawToken = token.replace('Bearer ', '');
-        await page.evaluate((t) => { 
-          localStorage.setItem('token', t); 
-          console.log('Token set in localStorage');
-        }, rawToken);
+      logLine('Navigating to auth page to set token...');
+      try {
+        await page.goto(`${frontendUrl}/auth/login`, { waitUntil: 'domcontentloaded', timeout: 15000 });
+        if (token) {
+          const rawToken = token.replace('Bearer ', '');
+          await page.evaluate((t) => { 
+            localStorage.setItem('token', t); 
+          }, rawToken);
+        }
+      } catch (err) {
+        logLine('Auth page skip or failure: ' + err.message);
       }
 
-      // Feature 10: Wait for initial load
-      console.log(`Puppeteer navigating to: ${targetUrl}`);
-      await page.goto(targetUrl, { waitUntil: 'networkidle2', timeout: 60000 });
+      logLine(`Puppeteer navigating to: ${targetUrl}`);
+      try {
+        const pageResponse = await page.goto(targetUrl, { waitUntil: 'load', timeout: 50000 });
+        logLine(`PAGE STATUS: ${pageResponse?.status()} for ${targetUrl}`);
+      } catch (err) {
+        logLine(`Initial navigation failed: ${err.message}`);
+      }
       
-      console.log('Waiting for #pdf-document selector...');
-      await page.waitForSelector("#pdf-document", { timeout: 20000 });
-      console.log('#pdf-document found.');
+      logLine('Waiting for #pdf-document...');
+      try {
+        await page.waitForSelector("#pdf-document", { timeout: 20000 });
+        logLine('#pdf-document found.');
+      } catch (err) {
+        const bodySnippet = await page.evaluate(() => document.body.innerText.substring(0, 500));
+        logLine(`SELECTOR TIMEOUT! Body snippet: ${bodySnippet}`);
+        throw new Error('PDF content (#pdf-document) not found on page.');
+      }
 
-      // Signal frontend to reset if needed
-      await page.evaluate(() => { window.RENDER_COMPLETE = false; });
+      await page.evaluate(() => { if (typeof window !== 'undefined') window.RENDER_COMPLETE = false; });
 
-      // Inject current data (MUST happen before waiting for RENDER_COMPLETE)
       if (data) {
         await page.evaluate((payload) => {
           if (typeof window.setExportData === 'function') window.setExportData(payload);
         }, data);
       }
 
-      // Feature 6: Production Image Rewriting (Point to Backend, not Frontend)
       const backendUrl = (process.env.BACKEND_URL || `${req.protocol}://${req.get('host')}`).replace(/\/$/, '');
-      console.log(`Fixing relative images using backend: ${backendUrl}`);
+      logLine(`Rewriting images using base: ${backendUrl}`);
       await page.evaluate((b) => {
         document.querySelectorAll("img").forEach(img => {
           const src = img.getAttribute("src");
-          if (src && !src.startsWith("http") && !src.startsWith("data:")) {
-            // Ensure path starts with /uploads/ or similar
-            const cleanSrc = src.startsWith("/") ? src : "/" + src;
+          if (!src || src.startsWith("http") || src.startsWith("data:")) return;
+          const isUpload = src.includes("uploads") || src.includes("trip-images") || /^[a-f0-9-]+\.(jpg|jpeg|png|webp|gif)$/i.test(src);
+          if (isUpload) {
+            let p = src;
+            if (!src.includes("/")) p = "/uploads/" + p;
+            const cleanSrc = p.startsWith("/") ? p : "/" + p;
             img.src = b + cleanSrc;
-            console.log(`Rewrote img src: ${src} -> ${img.src}`);
           }
         });
       }, backendUrl);
 
-      // Feature 3 & 4: Wait for rendering & fonts to settle after injection
-      console.log('Waiting for RENDER_COMPLETE signal...');
-      await page.waitForFunction(() => window.RENDER_COMPLETE === true, { timeout: 45000 });
-      console.log('RENDER_COMPLETE received.');
+      logLine('Waiting for RENDER_COMPLETE...');
+      try {
+        await page.waitForFunction(() => window.RENDER_COMPLETE === true, { timeout: 30000 });
+        logLine('RENDER_COMPLETE received.');
+      } catch (err) {
+        logLine('RENDER_COMPLETE timeout, proceeding anyway...');
+      }
       
       await page.evaluateHandle('document.fonts.ready');
       await new Promise(r => setTimeout(r, 1000));
-      console.log('Starting PDF generation...');
+      logLine('Generating PDF buffer...');
 
-      // Feature 1: Exact A4 PDF generation (Real Buffer)
       const pdfBuffer = await page.pdf({
         format: 'A4',
         printBackground: true,
@@ -759,12 +816,8 @@ router.post('/convert-to-pdf', auth, async (req, res) => {
         displayHeaderFooter: false
       });
 
-      // Validation
-      if (!pdfBuffer || pdfBuffer.length === 0) {
-        throw new Error("PDF generation failed: Buffer is empty");
-      }
+      if (!pdfBuffer || pdfBuffer.length === 0) throw new Error("PDF Buffer empty");
 
-      // Feature 2: Send binary with correct headers
       res.set({
         "Content-Type": "application/pdf",
         "Content-Length": pdfBuffer.length,
@@ -772,15 +825,20 @@ router.post('/convert-to-pdf', auth, async (req, res) => {
       });
 
       res.end(pdfBuffer);
+      logLine('PDF successfully sent.');
+    } catch (innerError) {
+      logLine(`INNER ERROR: ${innerError.message}\nStack: ${innerError.stack}`);
+      throw innerError;
     } finally {
-      await browser.close();
+      if (browser) await browser.close();
     }
   } catch (error) {
-    console.error('PDF Generation Error FULL:', error);
+    console.error('PDF External Error:', error);
+    logLine(`OUTER ERROR: ${error.message}`);
     res.status(500).json({ 
       message: 'Failed to generate PDF', 
       error: error.message,
-      stack: error.stack 
+      details: error.stack 
     });
   }
 });

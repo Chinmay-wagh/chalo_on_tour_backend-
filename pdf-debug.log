@@ -1,0 +1,235 @@
+[2026-03-17T10:31:28.700Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T10:32:49.112Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T10:35:42.172Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T10:35:42.173Z] Launching browser...
+[2026-03-17T10:35:42.175Z] INNER ERROR: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+Stack: Error: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+    at ChromeLauncher.resolveExecutablePath (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:334:27)
+    at ChromeLauncher.computeLaunchArguments (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/ChromeLauncher.js:94:24)
+    at async ChromeLauncher.launch (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:85:28)
+    at async /Users/chinmaypradeepwagh/Desktop/chalo/backend/routes/leads.js:695:17
+[2026-03-17T10:35:42.176Z] OUTER ERROR: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+[2026-03-17T10:35:42.985Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T10:35:42.986Z] Launching browser...
+[2026-03-17T10:35:42.988Z] INNER ERROR: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+Stack: Error: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+    at ChromeLauncher.resolveExecutablePath (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:334:27)
+    at ChromeLauncher.computeLaunchArguments (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/ChromeLauncher.js:94:24)
+    at async ChromeLauncher.launch (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:85:28)
+    at async /Users/chinmaypradeepwagh/Desktop/chalo/backend/routes/leads.js:695:17
+[2026-03-17T10:35:42.989Z] OUTER ERROR: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+[2026-03-17T10:35:43.136Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T10:35:43.137Z] Launching browser...
+[2026-03-17T10:35:43.139Z] INNER ERROR: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+Stack: Error: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+    at ChromeLauncher.resolveExecutablePath (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:334:27)
+    at ChromeLauncher.computeLaunchArguments (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/ChromeLauncher.js:94:24)
+    at async ChromeLauncher.launch (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:85:28)
+    at async /Users/chinmaypradeepwagh/Desktop/chalo/backend/routes/leads.js:695:17
+[2026-03-17T10:35:43.139Z] OUTER ERROR: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+[2026-03-17T10:35:43.261Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T10:35:43.261Z] Launching browser...
+[2026-03-17T10:35:43.262Z] INNER ERROR: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+Stack: Error: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+    at ChromeLauncher.resolveExecutablePath (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:334:27)
+    at ChromeLauncher.computeLaunchArguments (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/ChromeLauncher.js:94:24)
+    at async ChromeLauncher.launch (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:85:28)
+    at async /Users/chinmaypradeepwagh/Desktop/chalo/backend/routes/leads.js:695:17
+[2026-03-17T10:35:43.262Z] OUTER ERROR: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+[2026-03-17T10:35:43.449Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T10:35:43.450Z] Launching browser...
+[2026-03-17T10:35:43.451Z] INNER ERROR: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+Stack: Error: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+    at ChromeLauncher.resolveExecutablePath (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:334:27)
+    at ChromeLauncher.computeLaunchArguments (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/ChromeLauncher.js:94:24)
+    at async ChromeLauncher.launch (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:85:28)
+    at async /Users/chinmaypradeepwagh/Desktop/chalo/backend/routes/leads.js:695:17
+[2026-03-17T10:35:43.452Z] OUTER ERROR: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+[2026-03-17T10:38:24.030Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T10:38:24.031Z] Launching browser...
+[2026-03-17T10:38:24.035Z] INNER ERROR: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+Stack: Error: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+    at ChromeLauncher.resolveExecutablePath (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:334:27)
+    at ChromeLauncher.computeLaunchArguments (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/ChromeLauncher.js:94:24)
+    at async ChromeLauncher.launch (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:85:28)
+    at async /Users/chinmaypradeepwagh/Desktop/chalo/backend/routes/leads.js:694:17
+[2026-03-17T10:38:24.035Z] OUTER ERROR: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+[2026-03-17T10:38:24.984Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T10:38:24.985Z] Launching browser...
+[2026-03-17T10:38:24.987Z] INNER ERROR: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+Stack: Error: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+    at ChromeLauncher.resolveExecutablePath (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:334:27)
+    at ChromeLauncher.computeLaunchArguments (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/ChromeLauncher.js:94:24)
+    at async ChromeLauncher.launch (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:85:28)
+    at async /Users/chinmaypradeepwagh/Desktop/chalo/backend/routes/leads.js:694:17
+[2026-03-17T10:38:24.987Z] OUTER ERROR: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+[2026-03-17T10:38:25.179Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T10:38:25.179Z] Launching browser...
+[2026-03-17T10:38:25.180Z] INNER ERROR: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+Stack: Error: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+    at ChromeLauncher.resolveExecutablePath (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:334:27)
+    at ChromeLauncher.computeLaunchArguments (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/ChromeLauncher.js:94:24)
+    at async ChromeLauncher.launch (/Users/chinmaypradeepwagh/Desktop/chalo/backend/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:85:28)
+    at async /Users/chinmaypradeepwagh/Desktop/chalo/backend/routes/leads.js:694:17
+[2026-03-17T10:38:25.181Z] OUTER ERROR: Could not find Chrome (ver. 145.0.7632.77). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /Users/chinmaypradeepwagh/Desktop/chalo/backend/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+[2026-03-17T10:47:50.076Z] Found system Chrome at: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[2026-03-17T10:47:50.077Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T10:47:50.077Z] Chrome path: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[2026-03-17T10:47:50.077Z] Launching browser...
+[2026-03-17T10:47:57.604Z] Browser launched successfully.
+[2026-03-17T10:47:57.760Z] Navigating to auth page to set token...
+[2026-03-17T10:47:58.461Z] Puppeteer navigating to: http://localhost:3000/admin/tour-pdf?leadId=69b256cf8c31c376758c0ebe&export=1
+[2026-03-17T10:47:59.214Z] BROWSER LOG: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+[2026-03-17T10:47:59.281Z] PAGE STATUS: 200 for http://localhost:3000/admin/tour-pdf?leadId=69b256cf8c31c376758c0ebe&export=1
+[2026-03-17T10:47:59.281Z] Waiting for #pdf-document...
+[2026-03-17T10:47:59.372Z] #pdf-document found.
+[2026-03-17T10:47:59.434Z] Rewriting images using base: http://localhost:5001
+[2026-03-17T10:47:59.448Z] Waiting for RENDER_COMPLETE...
+[2026-03-17T10:48:00.715Z] BROWSER LOG: RENDER_COMPLETE - Robust signal sent
+[2026-03-17T10:48:00.717Z] RENDER_COMPLETE received.
+[2026-03-17T10:48:01.720Z] Generating PDF buffer...
+[2026-03-17T10:48:01.979Z] PDF successfully sent.
+[2026-03-17T10:56:25.076Z] Streaming Summary PDF for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T10:56:25.076Z] buildTourSummaryPdf started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T10:56:25.102Z] Tour Summary PDF Error: lightBg is not defined
+Stack: ReferenceError: lightBg is not defined
+    at buildTourSummaryHtml (/Users/chinmaypradeepwagh/Desktop/chalo/backend/lib/tourSummaryHtml.js:201:34)
+    at buildTourSummaryPdf (/Users/chinmaypradeepwagh/Desktop/chalo/backend/lib/tourSummaryPdf.js:49:16)
+    at /Users/chinmaypradeepwagh/Desktop/chalo/backend/routes/leads.js:579:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-03-17T10:56:28.072Z] Tour Summary Word Error: lightBg is not defined
+Stack: ReferenceError: lightBg is not defined
+    at buildTourSummaryHtml (/Users/chinmaypradeepwagh/Desktop/chalo/backend/lib/tourSummaryHtml.js:201:34)
+    at /Users/chinmaypradeepwagh/Desktop/chalo/backend/routes/leads.js:635:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-03-17T10:56:32.391Z] Streaming Summary PDF for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T10:56:32.392Z] buildTourSummaryPdf started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T10:56:32.395Z] Tour Summary PDF Error: lightBg is not defined
+Stack: ReferenceError: lightBg is not defined
+    at buildTourSummaryHtml (/Users/chinmaypradeepwagh/Desktop/chalo/backend/lib/tourSummaryHtml.js:201:34)
+    at buildTourSummaryPdf (/Users/chinmaypradeepwagh/Desktop/chalo/backend/lib/tourSummaryPdf.js:49:16)
+    at /Users/chinmaypradeepwagh/Desktop/chalo/backend/routes/leads.js:579:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-03-17T10:56:32.970Z] Tour Summary Word Error: lightBg is not defined
+Stack: ReferenceError: lightBg is not defined
+    at buildTourSummaryHtml (/Users/chinmaypradeepwagh/Desktop/chalo/backend/lib/tourSummaryHtml.js:201:34)
+    at /Users/chinmaypradeepwagh/Desktop/chalo/backend/routes/leads.js:635:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-03-17T11:00:25.864Z] Streaming Summary Word for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T11:00:25.868Z] Summary Word file sent successfully
+[2026-03-17T11:00:29.024Z] Streaming Summary PDF for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T11:00:29.025Z] buildTourSummaryPdf started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T11:00:29.028Z] HTML built, launching browser...
+[2026-03-17T11:00:30.655Z] Page created, setting content...
+[2026-03-17T11:00:32.555Z] Content set, generating PDF...
+[2026-03-17T11:00:32.903Z] PDF buffer generated, size: 1596622
+[2026-03-17T11:00:33.215Z] PDF sent to response
+[2026-03-17T11:00:33.303Z] Browser closed
+[2026-03-17T11:04:13.244Z] Streaming Summary Word for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T11:04:13.248Z] Summary Word file sent successfully
+[2026-03-17T11:04:46.418Z] Found system Chrome at: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[2026-03-17T11:04:46.419Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T11:04:46.419Z] Chrome path: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[2026-03-17T11:04:46.420Z] Launching browser...
+[2026-03-17T11:04:47.829Z] Browser launched successfully.
+[2026-03-17T11:04:47.937Z] Navigating to auth page to set token...
+[2026-03-17T11:04:48.264Z] Puppeteer navigating to: http://localhost:3000/admin/tour-pdf?leadId=69b256cf8c31c376758c0ebe&export=1
+[2026-03-17T11:04:48.781Z] BROWSER LOG: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+[2026-03-17T11:04:48.865Z] PAGE STATUS: 200 for http://localhost:3000/admin/tour-pdf?leadId=69b256cf8c31c376758c0ebe&export=1
+[2026-03-17T11:04:48.865Z] Waiting for #pdf-document...
+[2026-03-17T11:04:49.045Z] #pdf-document found.
+[2026-03-17T11:04:49.047Z] Rewriting images using base: http://localhost:5001
+[2026-03-17T11:04:49.053Z] Waiting for RENDER_COMPLETE...
+[2026-03-17T11:04:49.919Z] BROWSER LOG: RENDER_COMPLETE - Robust signal sent
+[2026-03-17T11:04:49.929Z] RENDER_COMPLETE received.
+[2026-03-17T11:04:50.932Z] Generating PDF buffer...
+[2026-03-17T11:04:51.213Z] PDF successfully sent.
+[2026-03-17T11:17:44.513Z] Found system Chrome at: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[2026-03-17T11:17:44.515Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-17T11:17:44.515Z] Chrome path: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[2026-03-17T11:17:44.516Z] Launching browser...
+[2026-03-17T11:17:46.142Z] Browser launched successfully.
+[2026-03-17T11:17:46.272Z] Navigating to auth page to set token...
+[2026-03-17T11:17:46.682Z] Puppeteer navigating to: http://localhost:3000/admin/tour-pdf?leadId=69b256cf8c31c376758c0ebe&export=1
+[2026-03-17T11:17:47.276Z] BROWSER LOG: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+[2026-03-17T11:17:47.345Z] PAGE STATUS: 200 for http://localhost:3000/admin/tour-pdf?leadId=69b256cf8c31c376758c0ebe&export=1
+[2026-03-17T11:17:47.346Z] Waiting for #pdf-document...
+[2026-03-17T11:17:47.527Z] #pdf-document found.
+[2026-03-17T11:17:47.545Z] Rewriting images using base: http://localhost:5001
+[2026-03-17T11:17:47.558Z] Waiting for RENDER_COMPLETE...
+[2026-03-17T11:17:48.404Z] BROWSER LOG: RENDER_COMPLETE - Robust signal sent
+[2026-03-17T11:17:48.406Z] RENDER_COMPLETE received.
+[2026-03-17T11:17:49.408Z] Generating PDF buffer...
+[2026-03-17T11:17:49.681Z] PDF successfully sent.
