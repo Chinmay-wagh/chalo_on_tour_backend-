@@ -9,6 +9,7 @@ const juice = require('juice');
 const { buildTourSummaryHtml } = require('../lib/tourSummaryHtml');
 const { buildTourSummaryPdf } = require('../lib/tourSummaryPdf');
 const { buildTourQuotationDocxHtml } = require('../lib/tourQuotationDocxHtml');
+const { buildTourQuotationDocx } = require('../lib/tourQuotationDocx');
 
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 10 * 1024 * 1024 } });
@@ -660,6 +661,11 @@ router.post('/convert-to-pdf', auth, async (req, res) => {
     try {
       const page = await browser.newPage();
       
+      // Capture browser console logs for debugging
+      page.on('console', msg => console.log('BROWSER LOG:', msg.text()));
+      page.on('pageerror', err => console.log('BROWSER PAGE ERROR:', err.message));
+      page.on('requestfailed', request => console.log('BROWSER REQ FAILED:', request.url(), request.failure()?.errorText));
+
       // Feature 1: Exact A4 Viewport
       await page.setViewport({ width: 794, height: 1123, deviceScaleFactor: 2 });
       
@@ -668,16 +674,24 @@ router.post('/convert-to-pdf', auth, async (req, res) => {
         await page.setExtraHTTPHeaders({ 'Authorization': token });
       }
 
-      // Domain-bound logic for token
-      await page.goto(frontendUrl, { waitUntil: 'domcontentloaded' });
+      // Domain-bound logic for token: Go to login page first to set localStorage
+      console.log('Navigating to auth page to set token...');
+      await page.goto(`${frontendUrl}/auth/login`, { waitUntil: 'domcontentloaded' });
       if (token) {
         const rawToken = token.replace('Bearer ', '');
-        await page.evaluate((t) => { localStorage.setItem('token', t); }, rawToken);
+        await page.evaluate((t) => { 
+          localStorage.setItem('token', t); 
+          console.log('Token set in localStorage');
+        }, rawToken);
       }
 
       // Feature 10: Wait for initial load
-      await page.goto(targetUrl, { waitUntil: 'networkidle0', timeout: 60000 });
-      await page.waitForSelector("#pdf-document", { timeout: 10000 });
+      console.log(`Puppeteer navigating to: ${targetUrl}`);
+      await page.goto(targetUrl, { waitUntil: 'networkidle2', timeout: 60000 });
+      
+      console.log('Waiting for #pdf-document selector...');
+      await page.waitForSelector("#pdf-document", { timeout: 20000 });
+      console.log('#pdf-document found.');
 
       // Signal frontend to reset if needed
       await page.evaluate(() => { window.RENDER_COMPLETE = false; });
@@ -690,18 +704,25 @@ router.post('/convert-to-pdf', auth, async (req, res) => {
       }
 
       // Feature 6: Absolute URLs (must happen after data injection so images exist)
+      console.log('Fixing relative image paths...');
       await page.evaluate(() => {
         document.querySelectorAll("img").forEach(img => {
-          if (img.src.startsWith("/")) {
-            img.src = window.location.origin + img.getAttribute("src");
+          const src = img.getAttribute("src");
+          if (src && !src.startsWith("http") && !src.startsWith("data:")) {
+            img.src = window.location.origin + (src.startsWith("/") ? "" : "/") + src;
+            console.log(`Rewrote img src: ${src} -> ${img.src}`);
           }
         });
       });
 
       // Feature 3 & 4: Wait for rendering & fonts to settle after injection
-      await page.waitForFunction(() => window.RENDER_COMPLETE === true, { timeout: 30000 });
+      console.log('Waiting for RENDER_COMPLETE signal...');
+      await page.waitForFunction(() => window.RENDER_COMPLETE === true, { timeout: 45000 });
+      console.log('RENDER_COMPLETE received.');
+      
       await page.evaluateHandle('document.fonts.ready');
-      await new Promise(r => setTimeout(r, 500));
+      await new Promise(r => setTimeout(r, 1000));
+      console.log('Starting PDF generation...');
 
       // Feature 1: Exact A4 PDF generation (Real Buffer)
       const pdfBuffer = await page.pdf({
@@ -734,22 +755,16 @@ router.post('/convert-to-pdf', auth, async (req, res) => {
   }
 });
 
-/** POST /leads/convert-to-docx — Use Puppeteer to capture rendered HTML then convert to DOCX */
+/** POST /leads/convert-to-docx — A direct JSON -> DOCX generator using 'docx' library (No HTML) */
 router.post('/convert-to-docx', auth, async (req, res) => {
   try {
     const { leadId, data, fileName } = req.body;
     if (!leadId) return res.status(400).json({ message: 'Lead ID is required' });
 
-    const rawClientUrl = (process.env.CLIENT_URL || 'http://localhost:3000').trim();
-    const frontendUrl = rawClientUrl.split(',')[0].trim().replace(/\/$/, '');
-    const HTMLToDOCX = require('html-to-docx');
-
-    const html = buildTourQuotationDocxHtml(data || {}, { frontendUrl });
-    const docxBuffer = await HTMLToDOCX(html, null, {
-      table: { row: { cantSplit: true } },
-      footer: false,
-      pageNumber: false
-    });
+    console.log(`Generating programmatic DOCX for lead: ${leadId}`);
+    
+    // Execute the new direct generator
+    const docxBuffer = await buildTourQuotationDocx(data || {});
 
     if (!docxBuffer || docxBuffer.length === 0) {
       throw new Error('DOCX generation failed: Buffer is empty');
@@ -762,7 +777,7 @@ router.post('/convert-to-docx', auth, async (req, res) => {
     });
     res.end(docxBuffer);
   } catch (error) {
-    console.error('Word Generation Error:', error);
+    console.error('Programmatic Word Generation Error:', error);
     res.status(500).json({ 
       message: 'Failed to generate Word document', 
       error: error.message,
