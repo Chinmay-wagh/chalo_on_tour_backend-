@@ -750,8 +750,12 @@ router.post('/convert-to-pdf', auth, async (req, res) => {
       await browser.close();
     }
   } catch (error) {
-    console.error('PDF Generation Error:', error);
-    res.status(500).json({ message: 'Failed to generate PDF', error: error.message });
+    console.error('PDF Generation Error FULL:', error);
+    res.status(500).json({ 
+      message: 'Failed to generate PDF', 
+      error: error.message,
+      stack: error.stack 
+    });
   }
 });
 
