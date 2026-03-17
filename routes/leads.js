@@ -655,7 +655,7 @@ router.post('/convert-to-pdf', auth, async (req, res) => {
 
     const browser = await puppeteer.launch({
       headless: 'new',
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu', '--single-process']
     });
 
     try {
@@ -703,17 +703,20 @@ router.post('/convert-to-pdf', auth, async (req, res) => {
         }, data);
       }
 
-      // Feature 6: Absolute URLs (must happen after data injection so images exist)
-      console.log('Fixing relative image paths...');
-      await page.evaluate(() => {
+      // Feature 6: Production Image Rewriting (Point to Backend, not Frontend)
+      const backendUrl = (process.env.BACKEND_URL || `${req.protocol}://${req.get('host')}`).replace(/\/$/, '');
+      console.log(`Fixing relative images using backend: ${backendUrl}`);
+      await page.evaluate((b) => {
         document.querySelectorAll("img").forEach(img => {
           const src = img.getAttribute("src");
           if (src && !src.startsWith("http") && !src.startsWith("data:")) {
-            img.src = window.location.origin + (src.startsWith("/") ? "" : "/") + src;
+            // Ensure path starts with /uploads/ or similar
+            const cleanSrc = src.startsWith("/") ? src : "/" + src;
+            img.src = b + cleanSrc;
             console.log(`Rewrote img src: ${src} -> ${img.src}`);
           }
         });
-      });
+      }, backendUrl);
 
       // Feature 3 & 4: Wait for rendering & fonts to settle after injection
       console.log('Waiting for RENDER_COMPLETE signal...');
