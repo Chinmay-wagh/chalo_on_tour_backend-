@@ -649,9 +649,25 @@ router.post('/convert-to-pdf', auth, async (req, res) => {
     if (!leadId) return res.status(400).json({ message: 'Lead ID is required' });
 
     const token = req.header('Authorization');
-    const rawClientUrl = (process.env.CLIENT_URL || 'http://localhost:3000').trim();
-    const frontendUrl = rawClientUrl.split(',')[0].trim().replace(/\/$/, '');
+    
+    // Feature 5: Smart Frontend URL detection
+    const rawClientUrl = (process.env.CLIENT_URL || '').trim();
+    let frontendUrl = '';
+    
+    if (rawClientUrl) {
+      frontendUrl = rawClientUrl.split(',')[0].trim().replace(/\/$/, '');
+    } else {
+      // Fallback: Use the origin of the request if env var is missing
+      const origin = req.get('origin') || req.get('referer');
+      if (origin && !origin.includes('localhost')) {
+          frontendUrl = origin.replace(/\/$/, '');
+      } else {
+          frontendUrl = 'http://localhost:3000';
+      }
+    }
+    
     const targetUrl = `${frontendUrl}/admin/tour-pdf?leadId=${leadId}&export=1`;
+    console.log(`PDF Generation: Targeting Frontend at ${frontendUrl}`);
 
     const browserOptions = {
       headless: 'new',
