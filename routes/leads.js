@@ -653,10 +653,17 @@ router.post('/convert-to-pdf', auth, async (req, res) => {
     const frontendUrl = rawClientUrl.split(',')[0].trim().replace(/\/$/, '');
     const targetUrl = `${frontendUrl}/admin/tour-pdf?leadId=${leadId}&export=1`;
 
-    const browser = await puppeteer.launch({
+    const browserOptions = {
       headless: 'new',
       args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu', '--single-process']
-    });
+    };
+
+    // Render-specific Fix: Ensure Chrome is found if installed via build step
+    if (process.env.PUPPETEER_CACHE_DIR) {
+      console.log(`Using custom Puppeteer cache: ${process.env.PUPPETEER_CACHE_DIR}`);
+    }
+
+    const browser = await puppeteer.launch(browserOptions);
 
     try {
       const page = await browser.newPage();
