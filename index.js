@@ -13,15 +13,29 @@ const app = express();
 app.set('trust proxy', 1);
 
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001'];
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'https://chalo-on-tour-frontend-psi.vercel.app'
+];
 // Production: set CLIENT_URL to your Vercel URL(s), comma-separated for multiple (e.g. main + preview)
 const clientUrls = process.env.CLIENT_URL ? process.env.CLIENT_URL.split(',').map(u => u.trim()).filter(Boolean) : [];
+
 app.use(cors({
   origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) return callback(null, true);
-    if (clientUrls.length && clientUrls.some(url => origin === url || origin === url.replace(/\/$/, ''))) return callback(null, true);
-    callback(null, false);
+    
+    const isAllowed = allowedOrigins.includes(origin) || 
+                     clientUrls.some(url => origin === url || origin === url.replace(/\/$/, '')) ||
+                     origin.endsWith('.vercel.app'); // Helpful for preview deployments
+                     
+    if (isAllowed) {
+      callback(null, true);
+    } else {
+      console.log('CORS blocked origin:', origin);
+      callback(null, false);
+    }
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
