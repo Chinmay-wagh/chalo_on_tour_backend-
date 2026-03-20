@@ -233,3 +233,88 @@ Stack: ReferenceError: lightBg is not defined
 [2026-03-17T11:17:48.406Z] RENDER_COMPLETE received.
 [2026-03-17T11:17:49.408Z] Generating PDF buffer...
 [2026-03-17T11:17:49.681Z] PDF successfully sent.
+[2026-03-19T14:39:00.581Z] Found system Chrome at: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[2026-03-19T14:39:00.582Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-19T14:39:00.583Z] Chrome path: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[2026-03-19T14:39:00.583Z] Launching browser...
+[2026-03-19T14:39:10.001Z] Browser launched successfully.
+[2026-03-19T14:39:10.804Z] Navigating to auth page to set token...
+[2026-03-19T14:39:11.009Z] Puppeteer navigating to: http://localhost:3000/admin/tour-pdf?leadId=69b256cf8c31c376758c0ebe&export=1
+[2026-03-19T14:39:11.630Z] BROWSER LOG: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+[2026-03-19T14:39:11.706Z] PAGE STATUS: 200 for http://localhost:3000/admin/tour-pdf?leadId=69b256cf8c31c376758c0ebe&export=1
+[2026-03-19T14:39:11.706Z] Waiting for #pdf-document...
+[2026-03-19T14:39:12.049Z] #pdf-document found.
+[2026-03-19T14:39:12.190Z] Rewriting images using base: http://localhost:5001
+[2026-03-19T14:39:12.224Z] Waiting for RENDER_COMPLETE...
+[2026-03-19T14:39:14.017Z] BROWSER LOG: RENDER_COMPLETE - Robust signal sent
+[2026-03-19T14:39:14.018Z] RENDER_COMPLETE received.
+[2026-03-19T14:39:15.020Z] Generating PDF buffer...
+[2026-03-19T14:39:15.355Z] PDF successfully sent.
+[2026-03-19T15:08:40.712Z] Found system Chrome at: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[2026-03-19T15:08:40.714Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-19T15:08:40.715Z] Chrome path: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[2026-03-19T15:08:40.715Z] Launching browser...
+[2026-03-19T15:08:43.083Z] Browser launched successfully.
+[2026-03-19T15:08:43.755Z] Navigating to auth page to set token...
+[2026-03-19T15:08:44.116Z] Puppeteer navigating to: http://localhost:3000/admin/tour-pdf?leadId=69b256cf8c31c376758c0ebe&export=1
+[2026-03-19T15:08:45.195Z] BROWSER LOG: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+[2026-03-19T15:08:45.265Z] PAGE STATUS: 200 for http://localhost:3000/admin/tour-pdf?leadId=69b256cf8c31c376758c0ebe&export=1
+[2026-03-19T15:08:45.266Z] Waiting for #pdf-document...
+[2026-03-19T15:08:45.477Z] #pdf-document found.
+[2026-03-19T15:08:45.495Z] Rewriting images using base: http://localhost:5001
+[2026-03-19T15:08:45.509Z] Waiting for RENDER_COMPLETE...
+[2026-03-19T15:08:47.023Z] BROWSER LOG: RENDER_COMPLETE - Robust signal sent
+[2026-03-19T15:08:47.052Z] RENDER_COMPLETE received.
+[2026-03-19T15:08:48.052Z] Generating PDF buffer...
+[2026-03-19T15:08:48.332Z] PDF successfully sent.
+[2026-03-20T09:26:50.688Z] Found system Chrome at: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[2026-03-20T09:26:50.690Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-20T09:26:50.690Z] Chrome path: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[2026-03-20T09:26:50.690Z] Launching browser...
+[2026-03-20T09:26:56.546Z] Browser launched successfully.
+[2026-03-20T09:26:57.170Z] Navigating to auth page to set token...
+[2026-03-20T09:26:57.461Z] Puppeteer navigating to: http://localhost:3000/admin/tour-pdf?leadId=69b256cf8c31c376758c0ebe&export=1
+[2026-03-20T09:26:57.788Z] BROWSER LOG: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+[2026-03-20T09:26:57.826Z] PAGE STATUS: 200 for http://localhost:3000/admin/tour-pdf?leadId=69b256cf8c31c376758c0ebe&export=1
+[2026-03-20T09:26:57.826Z] Waiting for #pdf-document...
+[2026-03-20T09:26:57.993Z] #pdf-document found.
+[2026-03-20T09:26:58.018Z] Rewriting images using base: http://localhost:5001
+[2026-03-20T09:26:58.027Z] Waiting for RENDER_COMPLETE...
+[2026-03-20T09:26:59.280Z] BROWSER LOG: RENDER_COMPLETE - Robust signal sent
+[2026-03-20T09:26:59.282Z] RENDER_COMPLETE received.
+[2026-03-20T09:27:00.284Z] Generating PDF buffer...
+[2026-03-20T09:27:00.471Z] PDF successfully sent.
+[2026-03-20T09:30:14.050Z] Found system Chrome at: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[2026-03-20T09:30:14.051Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-20T09:30:14.051Z] Chrome path: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[2026-03-20T09:30:14.051Z] Launching browser...
+[2026-03-20T09:30:17.246Z] Browser launched successfully.
+[2026-03-20T09:30:17.866Z] Navigating to auth page to set token...
+[2026-03-20T09:30:18.249Z] Puppeteer navigating to: http://localhost:3000/admin/tour-pdf?leadId=69b256cf8c31c376758c0ebe&export=1
+[2026-03-20T09:30:18.551Z] BROWSER LOG: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+[2026-03-20T09:30:18.596Z] PAGE STATUS: 200 for http://localhost:3000/admin/tour-pdf?leadId=69b256cf8c31c376758c0ebe&export=1
+[2026-03-20T09:30:18.596Z] Waiting for #pdf-document...
+[2026-03-20T09:30:19.456Z] #pdf-document found.
+[2026-03-20T09:30:19.482Z] Rewriting images using base: http://localhost:5001
+[2026-03-20T09:30:19.491Z] Waiting for RENDER_COMPLETE...
+[2026-03-20T09:30:21.053Z] BROWSER LOG: RENDER_COMPLETE - Robust signal sent
+[2026-03-20T09:30:21.061Z] RENDER_COMPLETE received.
+[2026-03-20T09:30:22.064Z] Generating PDF buffer...
+[2026-03-20T09:30:22.245Z] PDF successfully sent.
+[2026-03-20T09:41:10.726Z] Found system Chrome at: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[2026-03-20T09:41:10.727Z] PDF Generation Started for lead: 69b256cf8c31c376758c0ebe
+[2026-03-20T09:41:10.727Z] Chrome path: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[2026-03-20T09:41:10.727Z] Launching browser...
+[2026-03-20T09:41:14.900Z] Browser launched successfully.
+[2026-03-20T09:41:15.521Z] Navigating to auth page to set token...
+[2026-03-20T09:41:15.827Z] Puppeteer navigating to: http://localhost:3000/admin/tour-pdf?leadId=69b256cf8c31c376758c0ebe&export=1
+[2026-03-20T09:41:16.157Z] BROWSER LOG: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+[2026-03-20T09:41:16.202Z] PAGE STATUS: 200 for http://localhost:3000/admin/tour-pdf?leadId=69b256cf8c31c376758c0ebe&export=1
+[2026-03-20T09:41:16.202Z] Waiting for #pdf-document...
+[2026-03-20T09:41:16.595Z] #pdf-document found.
+[2026-03-20T09:41:16.620Z] Rewriting images using base: http://localhost:5001
+[2026-03-20T09:41:16.629Z] Waiting for RENDER_COMPLETE...
+[2026-03-20T09:41:22.290Z] BROWSER LOG: RENDER_COMPLETE - Robust signal sent
+[2026-03-20T09:41:22.301Z] RENDER_COMPLETE received.
+[2026-03-20T09:41:23.304Z] Generating PDF buffer...
+[2026-03-20T09:41:23.488Z] PDF successfully sent.
