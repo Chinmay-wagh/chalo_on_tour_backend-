@@ -672,17 +672,31 @@ router.post('/convert-to-pdf', auth, async (req, res) => {
     const rawClientUrl = (process.env.CLIENT_URL || '').trim();
     let frontendUrl = '';
     
-    if (rawClientUrl) {
-      frontendUrl = rawClientUrl.split(',')[0].trim().replace(/\/$/, '');
-    } else {
-      // Fallback: Use the origin of the request if env var is missing
-      const origin = req.get('origin') || req.get('referer');
-      if (origin && !origin.includes('localhost')) {
-          frontendUrl = origin.replace(/\/$/, '');
-      } else {
-          frontendUrl = 'http://localhost:3000';
-      }
+    // 1. First, check the request origin/referer to see if it's a valid frontend we can use
+    const origin = req.get('origin') || req.get('referer');
+    if (origin) {
+        const cleanOrigin = origin.replace(/\/$/, '');
+        // If it's a local address, IP address, or matches our known Vercel domains, use it
+        const isLocal = cleanOrigin.includes('localhost') || cleanOrigin.includes('127.0.0.1');
+        const isIp = /^(https?:\/\/)?(\d{1,3}\.){3}\d{1,3}(:\d+)?$/.test(cleanOrigin);
+        const isVercel = cleanOrigin.includes('vercel.app');
+        
+        if (isLocal || isIp || isVercel) {
+            frontendUrl = cleanOrigin;
+        }
     }
+
+
+    // 2. If no origin was found or it wasn't a recognized one, use CLIENT_URL from env
+    if (!frontendUrl && rawClientUrl) {
+        frontendUrl = rawClientUrl.split(',')[0].trim().replace(/\/$/, '');
+    }
+
+    // 3. Absolute Fallback
+    if (!frontendUrl) {
+        frontendUrl = 'http://localhost:3000';
+    }
+
     const targetUrl = `${frontendUrl}/admin/tour-pdf?leadId=${leadId}&export=1`;
 
     // Find Chrome: check env var, then common system paths as fallback
